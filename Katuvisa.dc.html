@@ -28,7 +28,7 @@
     @keyframes hkiPts { 0% { opacity: 0; transform: translateY(6px); } 20% { opacity: 1; transform: translateY(0); } 65% { opacity: 1; transform: translateY(-10px); } 100% { opacity: 0; transform: translateY(-20px); } }
   </style>
 </helmet>
-<div ref="{{ setRoot }}" style="min-height: 100vh; display: flex; flex-direction: column; gap: 14px; padding: 20px 26px 88px;">
+<div ref="{{ setRoot }}" style="min-height: 100vh; overflow-x: hidden; display: flex; flex-direction: column; gap: 14px; padding: {{ pagePad }};">
 
   <div style="display: grid; grid-template-columns: {{ headerCols }}; grid-template-rows: 34px auto auto; column-gap: 22px; row-gap: 12px; align-items: start; margin-bottom: -2px;">
     <div style="grid-column: 1; grid-row: 1; height: 34px; display: flex; align-items: flex-end;">
@@ -38,13 +38,13 @@
       <sc-if value="{{ inGame }}" hint-placeholder-val="{{ false }}">
         <button onClick="{{ quit }}" title="{{ t_home }}" style="display: flex; align-items: center; gap: 4px; border: none; background: transparent; color: #20201d; font-family: inherit; font-size: 26px; line-height: 1; font-weight: 600; letter-spacing: -0.015em; padding: 2px 8px 2px 2px; margin-left: -10px; border-radius: 9px; cursor: pointer;" style-hover="background: #efece5;">
           <span style="font-family: 'Material Symbols Rounded'; font-size: 30px; line-height: 1; font-weight: 300; font-variation-settings: 'FILL' 0, 'wght' 250; color: #6b6a63;">chevron_left</span>
-          <span>{{ modeTitle }}</span>
+          <span style="text-align: left;">{{ modeTitle }}</span>
         </button>
       </sc-if>
       <sc-if value="{{ showEyebrow }}" hint-placeholder-val="{{ true }}">
         <div style="display: flex; flex-direction: column; gap: 8px;">
           <h1 style="margin: 0; font-size: 26px; line-height: 1.15; font-weight: 600; letter-spacing: -0.015em; text-wrap: pretty;">{{ t_heroTitle }}</h1>
-          <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #57544d; text-wrap: pretty;">{{ t_heroSub }}</p>
+          <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #57544d; text-wrap: pretty; white-space: {{ subWrap }};">{{ t_heroSub }}</p>
         </div>
       </sc-if>
     </div>
@@ -444,8 +444,14 @@
       <div style="height: 4px; background: #e6e2d9;">
         <div style="height: 100%; width: {{ progressPct }}; background: #20201d;"></div>
       </div>
-      <div style="height: 66px; padding: 0 26px; display: flex; align-items: center; justify-content: flex-end; gap: 16px;">
-        <span style="margin-right: auto; font-size: 14px; color: #6b6a63;">{{ scopeBarLabel }}</span>
+      <div style="height: 66px; padding: {{ barPad }}; display: flex; align-items: center; justify-content: flex-end; gap: 16px;">
+        <sc-if value="{{ showBarExtras }}" hint-placeholder-val="{{ true }}">
+          <span style="margin-right: auto; font-size: 14px; color: #6b6a63;">{{ scopeBarLabel }}</span>
+        </sc-if>
+        <sc-if value="{{ barSpacer }}" hint-placeholder-val="{{ false }}">
+          <span style="margin-right: auto;"></span>
+        </sc-if>
+        <sc-if value="{{ showBarExtras }}" hint-placeholder-val="{{ true }}">
         <div data-popover="scoremenu" style="position: relative; display: flex; align-items: center;">
           <button onClick="{{ toggleScoreMenu }}" title="{{ t_scoreVis }}" style="border: none; background: transparent; color: #a8a49a; font-family: 'Material Symbols Rounded'; font-size: 22px; line-height: 1; font-variation-settings: 'FILL' 0, 'wght' 400; padding: 4px; border-radius: 8px; cursor: pointer;" style-hover="color: #57544d; background: #efece5;">more_vert</button>
           <sc-if value="{{ scoreMenuOpen }}" hint-placeholder-val="{{ false }}">
@@ -461,6 +467,7 @@
             </div>
           </sc-if>
         </div>
+        </sc-if>
         <sc-if value="{{ showStreakChip }}" hint-placeholder-val="{{ false }}">
           <span style="position: relative; height: 34px; display: flex; align-items: center; gap: 6px; padding: 0 13px 0 11px; background: #f8f2ea; border: 1px solid #e9ddcc; border-radius: 999px; font-size: 13px; font-weight: 600; color: #8a6636; white-space: nowrap; animation: hkiPop .45s cubic-bezier(.2,1.5,.4,1);">
             <span style="font-size: 14px;">🔥</span>
@@ -482,7 +489,7 @@
               <span style="position: absolute; right: 34px; bottom: 30px; pointer-events: none; font-size: 17px; font-weight: 700; color: #1f7a3f; white-space: nowrap; animation: hkiPts 1.4s ease-out forwards;">{{ ptsLabel }}</span>
             </sc-if>
             <sc-if value="{{ rulesOpen }}" hint-placeholder-val="{{ false }}">
-              <div style="position: absolute; right: 0; bottom: 46px; z-index: 40; width: 306px; background: #fffefb; border: 1px solid #dedad1; border-radius: 12px; padding: 14px 16px; box-shadow: 0 10px 28px rgba(32,32,29,.16); display: flex; flex-direction: column; gap: 10px; animation: hkiIn .18s ease-out;">
+              <div style="position: fixed; right: {{ rulesRight }}; left: {{ rulesLeft }}; bottom: 82px; z-index: 40; width: {{ rulesWidth }}; max-width: calc(100vw - 24px); background: #fffefb; border: 1px solid #dedad1; border-radius: 12px; padding: 14px 16px; box-shadow: 0 10px 28px rgba(32,32,29,.16); display: flex; flex-direction: column; gap: 10px; animation: hkiIn .18s ease-out;">
                 <div style="font-family: inherit; font-size: 11px; letter-spacing: 0.02em; text-transform: uppercase; color: #918d83;">{{ t_scoringHead }}</div>
                 <div style="display: flex; gap: 10px; font-size: 14px; line-height: 1.5; color: #57544d;">
                   <span>🎯</span><span>{{ t_rule1 }}</span>
@@ -1231,6 +1238,13 @@ class Component extends DCLogic {
       panelFlex: st.screen === 'result' ? '1 1 100%' : '0 1 358px',
       setRoot: this.setRoot,
       showAllModes: wide,
+      subWrap: wide ? 'nowrap' : 'normal',
+      pagePad: wide ? '20px 26px 88px' : '16px 16px 88px',
+      barPad: wide ? '0 26px' : '0 14px',
+      showBarExtras: wide, barSpacer: !wide,
+      rulesRight: wide ? '26px' : '12px',
+      rulesLeft: wide ? 'auto' : '12px',
+      rulesWidth: wide ? '306px' : 'auto',
       headerCols: wide ? 'minmax(240px, 1fr) 358px' : 'minmax(0, 1fr) minmax(0, auto)',
       studyBg: modeBg('study'), studyBd: modeBd('study'), pickStudy: this.setMode('study'),
       startLabel: st.mode === 'study' ? T.startStudy : T.startRound,
@@ -1276,7 +1290,7 @@ class Component extends DCLogic {
       scoreCol: st.pop ? '#1f7a3f' : '#1b2a4a',
       streak: st.streak, best: st.best,
       scoreVisible: st.hideScore !== true,
-      showStreakChip: st.streak >= 2 && st.hideScore !== true,
+      showStreakChip: st.streak >= 2 && st.hideScore !== true && wide,
       showBurst: !!(st.burst && st.streak >= 2),
       streakLabel: Math.min(3, st.streak) + T.multiplier,
       scoreMenuOpen: !!st.scoreMenu, toggleScoreMenu: this.toggleScoreMenu,
