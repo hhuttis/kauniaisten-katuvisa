@@ -1,12 +1,14 @@
 # Katuvisa Kauniainen / Gatuquiz Grankulla — julkaisu ja päivittäminen
 
 
-## Tallenna peli aloitusnäytölle kännykkään
+## Käyttö käynnykällä ja tallentaminen aloitusnäytölle
+
+Avaa linkki: https://hhuttis.github.io/kauniaisten-katuvisa/
 
 - **iPhone (Safari):** jakonappi → **Lisää Koti-valikkoon**
 - **Android (Chrome):** ⋮ → **Lisää aloitusnäyttöön**
 
-Pelin kuvake on sininen.
+Pelin kuvake on sininen. Puhelimella ominaisuudet ovat rajoitetummat kuin tietokoneella.
 
 ---
 
