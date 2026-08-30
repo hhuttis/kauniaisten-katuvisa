@@ -1,38 +1,12 @@
 # Katuvisa Kauniainen / Gatuquiz Grankulla — julkaisu ja päivittäminen
 
-## Miten tämä on rakennettu
 
-`index.html` on **pysyvä kuoritiedosto**. Se sisältää kaiken PWA-tekniikan
-(nimi, ikonit, offline-tuki) ja avaa sisäänsä varsinaisen pelin. Peli itse on
-`Katuvisa.dc.html`, joka on Claude Designin vienti sellaisenaan.
-
-Tämä tarkoittaa, että **et koskaan muokkaa mitään käsin**.
-
----
-
-## Ensimmäinen julkaisu — oma repository
-
-Tämä on eri palvelu kuin Helsinki-peli, joten se tarvitsee **oman
-repositoryn**. Älä lataa näitä tiedostoja Helsinki-pelin repoon: tiedostonimet
-ovat samat (`index.html`, `Katuvisa.dc.html`, `support.js`, `map-data.js`,
-`street-facts.js`) ja korvaisivat Helsinki-pelin.
-
-1. Kirjaudu **github.com** → **+** → **New repository**
-2. Nimeksi esim. `grani-katuvisa`, valitse **Public**, **Create repository**
-3. **uploading an existing file** → raahaa tämän kansion **sisältö**
-   (ei kansiota itseään) → **Commit changes**
-4. **Settings** → **Pages** → *Source*: **Deploy from a branch** → haara
-   **main**, kansio **/ (root)** → **Save**
-5. Odota 1–2 minuuttia. Osoite:
-   `https://KÄYTTÄJÄNIMESI.github.io/grani-katuvisa/`
-
-## Aloitusnäytölle
+## Tallenna peli aloitusnäytölle kännykkään
 
 - **iPhone (Safari):** jakonappi → **Lisää Koti-valikkoon**
 - **Android (Chrome):** ⋮ → **Lisää aloitusnäyttöön**
 
-Molemmat pelit voivat olla aloitusnäytöllä yhtä aikaa omina kuvakkeinaan.
-Tämän kuvake on sininen (#2e3192), Helsinki-pelin oranssi.
+Pelin kuvake on sininen.
 
 ---
 
